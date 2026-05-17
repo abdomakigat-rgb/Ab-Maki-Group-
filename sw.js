@@ -1,3 +1,5 @@
+importScripts("https://cdn.pushalert.co/sw-89422.js");
+
 /**
  * Ab Maki Empire - Service Worker (v2.1)
  * تم تحسين المسارات لضمان التوافق مع GitHub Pages
