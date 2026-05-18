@@ -60,13 +60,13 @@
         }
         
         /* تفعيل حماية الصور المصغرة لمنع التحميل والسحب */
-        .design-container {
+        .design-container, .web-card {
             user-select: none;
             -webkit-user-drag: none;
         }
 
         /* إضافة العلامة المائية تلقائياً */
-        .design-container::after {
+        .design-container::after, .web-card::after {
             content: '';
             position: absolute;
             top: 10px;
@@ -78,63 +78,6 @@
             opacity: 0.5;
             pointer-events: none;
             z-index: 10;
-        }
-
-        /* --- شاشة التحميل (Preloader) المحسنة --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999; 
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
-        }
-
-        .loader-logo {
-            width: 100px;
-            filter: drop-shadow(0 0 15px var(--accent-glow));
-            animation: breathe-logo 2s infinite ease-in-out;
-            margin-bottom: 30px;
-        }
-
-        .loader-bar {
-            width: 180px;
-            height: 3px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .loader-bar::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, var(--main-red), transparent);
-            animation: loader-scan 1.5s infinite ease-in-out;
-        }
-
-        @keyframes breathe-logo {
-            0%, 100% { transform: scale(0.95); opacity: 0.7; }
-            50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px var(--main-red)); }
-        }
-
-        @keyframes loader-scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        body.loading {
-            overflow: hidden;
         }
 
         header {
@@ -497,8 +440,8 @@
             flex-shrink: 0;
         }
 
-        /* تنسيق صور التصاميم الجديدة */
-        .design-container {
+        /* تنسيق صور التصاميم والمواقع */
+        .design-container, .web-card {
             position: relative;
             min-width: 320px;
             height: 200px;
@@ -508,13 +451,14 @@
             border: 1px solid #333;
             transition: 0.3s;
             flex-shrink: 0;
+            cursor: pointer;
         }
-        .design-container img {
+        .design-container img, .web-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .design-container:hover {
+        .design-container:hover, .web-card:hover {
             border-color: var(--main-red);
             transform: scale(1.05);
             z-index: 5;
@@ -525,7 +469,7 @@
                 min-width: 260px;
                 height: 460px;
             }
-            .design-container {
+            .design-container, .web-card {
                 min-width: 260px;
                 height: 160px;
             }
@@ -817,7 +761,6 @@
             .nav-links.active ~ .menu-btn { color: #fff; } 
         }
 
-        /* تنسيق إضافي لزر الإشعارات ليكون متناسقاً */
         #webpushr-subscription-button {
             margin-left: 15px;
             display: flex;
@@ -830,12 +773,7 @@
         }
         </style>
 </head>
-<body class="loading"> 
-    <div id="loader">
-        <img src="https://i.ibb.co/9HvXFf6L/1000052597.png" alt="Ab Maki Loading" class="loader-logo">
-        <div class="loader-bar"></div>
-    </div>
-
+<body> 
     <div id="install-banner">
         <div class="install-content">
             <img src="https://i.ibb.co/pBTrM2QM/image.png" alt="Ab Maki App" class="install-img">
@@ -911,8 +849,27 @@
     </section>
 
     <section id="portfolio">
-        <h2 class="section-title">نماذج من إبداعنا في المونتاج</h2>
-        
+        <h2 class="section-title">نماذج مواقعنا البرمجية</h2>
+        <div class="portfolio-wrapper">
+            <button class="scroll-btn prev-btn" id="webPrev"><i class="fas fa-chevron-right"></i></button>
+            <div class="portfolio-grid" id="webGrid">
+                <div class="web-card" onclick="window.open('https://abdodaim14-ai.github.io/-/', '_blank')">
+                    <img src="https://i.ibb.co/3ykpG0K6/image.png" alt="دعم المواهب">
+                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">موقع دعم المواهب</div>
+                </div>
+                <div class="web-card" onclick="window.open('https://abdomakigat-rgb.github.io/Sheikh-Ahmed-/', '_blank')">
+                    <img src="https://i.ibb.co/ycYm8r8d/image.png" alt="موقع الشيخ أحمد">
+                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">موقع الشيخ أحمد</div>
+                </div>
+                <div class="web-card" onclick="window.open('https://abdomakigat-rgb.github.io/Al-qma-/', '_blank')">
+                    <img src="https://i.ibb.co/G4z9vYfF/image.png" alt="موقع سنتر القمة">
+                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">منصة سنتر القمة التعليمية</div>
+                </div>
+            </div>
+            <button class="scroll-btn next-btn" id="webNext"><i class="fas fa-chevron-left"></i></button>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 80px;">نماذج من إبداعنا في المونتاج</h2>
         <div class="portfolio-wrapper">
             <button class="scroll-btn prev-btn" id="slidePrev"><i class="fas fa-chevron-right"></i></button>
             <div class="portfolio-grid" id="videoGrid">
@@ -947,7 +904,7 @@
             <button class="scroll-btn next-btn" id="designNext"><i class="fas fa-chevron-left"></i></button>
         </div>
         
-        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--main-red);">تصفح الفيديوهات والتصاميم باستخدام الأسهم أو السحب</p>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--main-red);">تصفح النماذج باستخدام الأسهم أو السحب</p>
     </section>
 
     <section id="request-service">
@@ -1024,37 +981,22 @@
     </footer>
 
     <script>
-        /* --- إضافة حماية متقدمة للصور ومنع السكرين شوت --- */
-        
-        // 1. منع النقر بيمين الماوس على صور النماذج فقط
-        document.querySelectorAll('.design-container img').forEach(img => {
+        /* حماية الصور ومنع السكرين شوت */
+        document.querySelectorAll('.design-container img, .web-card img').forEach(img => {
             img.addEventListener('contextmenu', (e) => e.preventDefault());
         });
 
-        // 2. محاولة منع السكرين شوت عبر مراقبة الأزرار (للحواسب)
         document.addEventListener('keydown', (e) => {
             if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
-                document.body.style.filter = "brightness(0)"; // تعتيم الشاشة فوراً
+                document.body.style.filter = "brightness(0)";
                 setTimeout(() => { document.body.style.filter = "none"; }, 1000);
                 alert("غير مسموح بالتقاط شاشة لضمان حماية حقوق التصاميم.");
                 return false;
             }
         });
 
-        // 3. كود حماية إضافي لمنع السحب
         document.addEventListener('dragstart', (e) => {
             if (e.target.nodeName === 'IMG') e.preventDefault();
-        });
-
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                document.body.classList.remove('loading');
-                setTimeout(() => {
-                    loader.style.visibility = 'hidden';
-                }, 600);
-            }, 400); 
         });
 
         const serviceType = document.getElementById('serviceType');
@@ -1129,15 +1071,19 @@
             });
         }
 
+        const scrollAmount = 340;
         const videoGrid = document.getElementById('videoGrid');
         const designGrid = document.getElementById('designGrid');
-        const scrollAmount = 340;
+        const webGrid = document.getElementById('webGrid');
         
         document.getElementById('slidePrev').addEventListener('click', () => videoGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
         document.getElementById('slideNext').addEventListener('click', () => videoGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
         
         document.getElementById('designPrev').addEventListener('click', () => designGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
         document.getElementById('designNext').addEventListener('click', () => designGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
+
+        document.getElementById('webPrev').addEventListener('click', () => webGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+        document.getElementById('webNext').addEventListener('click', () => webGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
 
         let deferredPrompt;
         const installBanner = document.getElementById('install-banner');
