@@ -60,13 +60,13 @@
         }
         
         /* تفعيل حماية الصور المصغرة لمنع التحميل والسحب */
-        .design-container, .web-card {
+        .design-container {
             user-select: none;
             -webkit-user-drag: none;
         }
 
         /* إضافة العلامة المائية تلقائياً */
-        .design-container::after, .web-card::after {
+        .design-container::after {
             content: '';
             position: absolute;
             top: 10px;
@@ -440,8 +440,52 @@
             flex-shrink: 0;
         }
 
-        /* تنسيق صور التصاميم والمواقع */
-        .design-container, .web-card {
+        /* تنسيق أزرار المواقع الجديدة */
+        .web-button-card {
+            min-width: 280px;
+            background: var(--card-bg);
+            border: 2px solid #222;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .web-button-card:hover {
+            border-color: var(--main-red);
+            transform: translateY(-8px);
+            background: #1a1a1a;
+            box-shadow: 0 15px 30px rgba(230, 0, 0, 0.2);
+        }
+
+        .web-button-card i {
+            font-size: 2.5rem;
+            color: var(--main-red);
+        }
+
+        .web-button-card span {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .web-btn-action {
+            width: 100%;
+            padding: 10px;
+            background: var(--main-red);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* تنسيق صور التصاميم */
+        .design-container {
             position: relative;
             min-width: 320px;
             height: 200px;
@@ -453,12 +497,12 @@
             flex-shrink: 0;
             cursor: pointer;
         }
-        .design-container img, .web-card img {
+        .design-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .design-container:hover, .web-card:hover {
+        .design-container:hover {
             border-color: var(--main-red);
             transform: scale(1.05);
             z-index: 5;
@@ -469,9 +513,12 @@
                 min-width: 260px;
                 height: 460px;
             }
-            .design-container, .web-card {
+            .design-container {
                 min-width: 260px;
                 height: 160px;
+            }
+            .web-button-card {
+                min-width: 220px;
             }
         }
 
@@ -853,18 +900,21 @@
         <div class="portfolio-wrapper">
             <button class="scroll-btn prev-btn" id="webPrev"><i class="fas fa-chevron-right"></i></button>
             <div class="portfolio-grid" id="webGrid">
-                <div class="web-card" onclick="window.open('https://abdodaim14-ai.github.io/-/', '_blank')">
-                    <img src="https://i.ibb.co/3ykpG0K6/image.png" alt="دعم المواهب">
-                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">موقع دعم المواهب</div>
-                </div>
-                <div class="web-card" onclick="window.open('https://abdomakigat-rgb.github.io/Sheikh-Ahmed-/', '_blank')">
-                    <img src="https://i.ibb.co/ycYm8r8d/image.png" alt="موقع الشيخ أحمد">
-                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">موقع الشيخ أحمد</div>
-                </div>
-                <div class="web-card" onclick="window.open('https://abdomakigat-rgb.github.io/Al-qma-/', '_blank')">
-                    <img src="https://i.ibb.co/G4z9vYfF/image.png" alt="موقع سنتر القمة">
-                    <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; padding: 5px; font-size: 0.8rem;">منصة سنتر القمة التعليمية</div>
-                </div>
+                <a href="https://abdodaim14-ai.github.io/-/" target="_blank" class="web-button-card">
+                    <i class="fas fa-star"></i>
+                    <span>موقع دعم المواهب</span>
+                    <div class="web-btn-action">دخول الموقع</div>
+                </a>
+                <a href="https://abdomakigat-rgb.github.io/Sheikh-Ahmed-/" target="_blank" class="web-button-card">
+                    <i class="fas fa-mosque"></i>
+                    <span>موقع الشيخ أحمد</span>
+                    <div class="web-btn-action">دخول الموقع</div>
+                </a>
+                <a href="https://abdomakigat-rgb.github.io/Al-qma-/" target="_blank" class="web-button-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>منصة سنتر القمة التعليمية</span>
+                    <div class="web-btn-action">دخول الموقع</div>
+                </a>
             </div>
             <button class="scroll-btn next-btn" id="webNext"><i class="fas fa-chevron-left"></i></button>
         </div>
@@ -982,7 +1032,7 @@
 
     <script>
         /* حماية الصور ومنع السكرين شوت */
-        document.querySelectorAll('.design-container img, .web-card img').forEach(img => {
+        document.querySelectorAll('.design-container img').forEach(img => {
             img.addEventListener('contextmenu', (e) => e.preventDefault());
         });
 
