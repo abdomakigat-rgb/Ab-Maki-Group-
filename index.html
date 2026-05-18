@@ -54,6 +54,32 @@
             overflow-x: hidden;
         }
 
+        /* --- حماية ضد السكرين شوت (تعتيم الشاشة) --- */
+        @media print {
+            body { display:none; }
+        }
+        
+        /* تفعيل حماية الصور المصغرة لمنع التحميل والسحب */
+        .design-container {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* إضافة العلامة المائية تلقائياً */
+        .design-container::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background: url('https://i.ibb.co/9HvXFf6L/1000052597.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 10;
+        }
+
         /* --- شاشة التحميل (Preloader) المحسنة --- */
         #loader {
             position: fixed;
@@ -998,6 +1024,28 @@
     </footer>
 
     <script>
+        /* --- إضافة حماية متقدمة للصور ومنع السكرين شوت --- */
+        
+        // 1. منع النقر بيمين الماوس على صور النماذج فقط
+        document.querySelectorAll('.design-container img').forEach(img => {
+            img.addEventListener('contextmenu', (e) => e.preventDefault());
+        });
+
+        // 2. محاولة منع السكرين شوت عبر مراقبة الأزرار (للحواسب)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
+                document.body.style.filter = "brightness(0)"; // تعتيم الشاشة فوراً
+                setTimeout(() => { document.body.style.filter = "none"; }, 1000);
+                alert("غير مسموح بالتقاط شاشة لضمان حماية حقوق التصاميم.");
+                return false;
+            }
+        });
+
+        // 3. كود حماية إضافي لمنع السحب
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.nodeName === 'IMG') e.preventDefault();
+        });
+
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
@@ -1035,7 +1083,6 @@
             const uploadBox = document.getElementById('upload-box');
             
             if (file) {
-                // إظهار المعاينة فوراً قبل الرفع
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     imagePreview.src = e.target.result;
