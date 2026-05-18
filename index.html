@@ -749,14 +749,17 @@
             .nav-links.active ~ .menu-btn { color: #fff; } 
         }
 
-        <script type="text/javascript">
-            (function(d, t) {
-                var g = d.createElement(t),
-                s = d.getElementsByTagName(t)[0];
-                g.src = "https://cdn.pushalert.co/unified_3a14e5102b70e3c6c62b846afde446b0.js";
-                s.parentNode.insertBefore(g, s);
-            }(document, "script"));
-        </script>
+        /* تنسيق إضافي لزر الإشعارات ليكون متناسقاً */
+        #webpushr-subscription-button {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width: 992px) {
+            #webpushr-subscription-button {
+                margin: 20px 0;
+            }
+        }
         </style>
 </head>
 <body class="loading"> 
@@ -791,6 +794,7 @@
                 <li><a href="#portfolio">أعمالنا</a></li>
                 <li><a href="#request-service">طلب خدمة</a></li>
                 <li><a href="#contact">تواصل معنا</a></li>
+                <li><div id="webpushr-subscription-button" data-background-color="#ff0000" data-color="#000000"></div></li>
                 <li><div class="desktop-install-btn" id="desktopInstallBtn"><i class="fas fa-laptop" style="margin-left: 8px;"></i>تثبيت على الكمبيوتر</div></li>
                 <li><div class="menu-install-btn" id="menuInstallBtn"><i class="fas fa-download" style="margin-left: 8px;"></i>تثبيت التطبيق</div></li>
             </ul>
