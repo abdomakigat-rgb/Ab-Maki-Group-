@@ -471,10 +471,37 @@
             flex-shrink: 0;
         }
 
+        /* تنسيق صور التصاميم الجديدة */
+        .design-container {
+            position: relative;
+            min-width: 320px;
+            height: 200px;
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .design-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .design-container:hover {
+            border-color: var(--main-red);
+            transform: scale(1.05);
+            z-index: 5;
+        }
+
         @media (max-width: 480px) {
             .video-container {
                 min-width: 260px;
                 height: 460px;
+            }
+            .design-container {
+                min-width: 260px;
+                height: 160px;
             }
         }
 
@@ -875,8 +902,26 @@
             </div>
             <button class="scroll-btn next-btn" id="slideNext"><i class="fas fa-chevron-left"></i></button>
         </div>
+
+        <h2 class="section-title" style="margin-top: 80px;">الصور المصغرة والبوسترات</h2>
+        <div class="portfolio-wrapper">
+            <button class="scroll-btn prev-btn" id="designPrev"><i class="fas fa-chevron-right"></i></button>
+            <div class="portfolio-grid" id="designGrid">
+                <div class="design-container"><img src="https://i.ibb.co/wNnxGmRG/IMG-20260329-WA0000.jpg" alt="Design 1"></div>
+                <div class="design-container"><img src="https://i.ibb.co/CK5KfkdN/Picsart-26-05-08-12-52-52-113.jpg" alt="Design 2"></div>
+                <div class="design-container"><img src="https://i.ibb.co/Q3rn2b2/Picsart-26-01-13-17-01-28-072.png" alt="Design 3"></div>
+                <div class="design-container"><img src="https://i.ibb.co/93z8Dkcw/file-1777620362715.jpg" alt="Design 4"></div>
+                <div class="design-container"><img src="https://i.ibb.co/9H4qzQZM/file-1776091624162.png" alt="Design 5"></div>
+                <div class="design-container"><img src="https://i.ibb.co/1Dz9d7m/file-1775312213170.png" alt="Design 6"></div>
+                <div class="design-container"><img src="https://i.ibb.co/PvdXCcpw/file-1775478150638.png" alt="Design 7"></div>
+                <div class="design-container"><img src="https://i.ibb.co/fVBpXZL7/file-1774216317129.png" alt="Design 8"></div>
+                <div class="design-container"><img src="https://i.ibb.co/Q3r1MR06/file-1774095056195.png" alt="Design 9"></div>
+                <div class="design-container"><img src="https://i.ibb.co/YBZM3GG1/file-1772702191095.png" alt="Design 10"></div>
+            </div>
+            <button class="scroll-btn next-btn" id="designNext"><i class="fas fa-chevron-left"></i></button>
+        </div>
         
-        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--main-red);">تصفح الفيديوهات باستخدام الأسهم أو السحب</p>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--main-red);">تصفح الفيديوهات والتصاميم باستخدام الأسهم أو السحب</p>
     </section>
 
     <section id="request-service">
@@ -1038,9 +1083,14 @@
         }
 
         const videoGrid = document.getElementById('videoGrid');
+        const designGrid = document.getElementById('designGrid');
         const scrollAmount = 340;
+        
         document.getElementById('slidePrev').addEventListener('click', () => videoGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
         document.getElementById('slideNext').addEventListener('click', () => videoGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
+        
+        document.getElementById('designPrev').addEventListener('click', () => designGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+        document.getElementById('designNext').addEventListener('click', () => designGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
 
         let deferredPrompt;
         const installBanner = document.getElementById('install-banner');
