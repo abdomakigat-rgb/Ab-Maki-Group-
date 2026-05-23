@@ -1,4 +1,3 @@
-importScripts("https://cdn.pushalert.co/sw-89422.js");
 
 /**
  * Ab Maki Empire - Service Worker (v2.1)
